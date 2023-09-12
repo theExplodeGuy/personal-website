@@ -1,0 +1,46 @@
+
+
+{% extends "base.html" %}
+{% block content %}
+<header class="masthead">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h3 class=" site-heading my-4 mt-3 text-black"> Marios Stavrou</h3>
+          <h4 class="text-dark">About Me</h4>
+          <p class="text-dark">​A highly skilled, student of The English School Nicosia currently studying in the seventh form, committed to excel in both academic and social fields. Active involvement in school life and involvement in several projects/activities, gaining skills in communication, coordination and project management. Analytical and problem-solving skills, developed by both self-study and high academic performance. I am aiming to study mathematics and computer science in university.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</header>
+
+
+
+<div class="container">
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8 mt-3 left">
+      {% for home in home_list %}
+      <div class="card mb-4">
+        <div class="card-body">
+          <h2 class="card-title">{{ home.qualification }}</h2>
+          <p class="card-text text-muted h6">{{ home.qualification_owner }} | {{ home.created_on}} </p>
+          <p class="card-text">{{home.about_qualification|slice:":200"|safe}}</p>
+          <a href="{% url 'qualification_detail' home.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% block sidebar %}
+    {% include 'sidebar.html' %}
+    {% endblock sidebar %}
+  </div>
+</div>
+{%endblock%}

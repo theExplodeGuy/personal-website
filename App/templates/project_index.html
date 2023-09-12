@@ -1,0 +1,149 @@
+{% load static %}
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="mainNav" style="width: 100%; height: 9rem; left: -1;>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}" style="font-size:2.3em; padding: 15px;">Marios Stavrou</a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item text-black">
+            <a class="nav-link text-black font-weight-bold" style="font-size:1.5em; padding-right:30px" href="/">Home</a>
+          </li>
+          <li class="nav-item text-black">
+            <a class="nav-link text-black font-weight-bold" style="font-size:1.5em; padding-right:30px" href="/projects">Projects</a>
+          </li>
+          <li class="nav-item text-black">
+            <a class="nav-link text-black font-weight-bold"style="font-size:1.5em; padding-right:30px"  href="/blog">Blog</a>
+          </li>
+          <li class="nav-item text-black">
+            <a class="nav-link text-black font-weight-bold" style="font-size:1.5em; padding-right:30px" href="/contact">Contact</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Footer -->
+
+
+</body>
+
+<header class="masthead">
+
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class=" row-md-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1 class=" site-heading my-4 mt-3 text-black"> Projects </h1>
+          <p class="text-dark" style="font-size:1.875em">Here you will find coding projects on a range of topics, form chatroom to simulations and graphics. You can also find projects done for economics and other subjects.</p>
+          <h1 class=" site-heading my-4 mt-3 text-black"> Highlights </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- Calling jquery first -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Carousel -->
+<script language="JavaScript" type="text/javascript">
+jQuery(document).ready(function($) {
+  $('.carousel').carousel({
+      interval: 2000
+    })
+    // Not needed because the class can be included in the HTML
+    // $(".carousel-inner div:first").addClass("active");
+});
+</script>
+
+
+<div class="container mt-5">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css">
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+    <ol class="carousel-indicators">
+      {% for project in projects %}
+      {% if forloop.first and project.status == 1%}
+      <li data-target="#myCarousel" data-slide-to={forloop.index} class="active"></li>
+      {% elif project.status == 1%}
+      <li data-target="#myCarousel" data-slide-to={forloop.index}></li>
+      {% endif %}
+      {% endfor %}
+    </ol>
+
+    <div class="carousel-inner" role="listbox" style=" width:100%; height: 60rem !important; margin: auto;">
+    {% for project in projects %}
+      {% if forloop.first and project.status == 1%}
+      <div class="item active">
+        <img src="{% static project.image %}"  class="d-block img-responsive" height="100%"  width="100%">
+        <div  class="carousel-caption  d-md-block" style="top: 0%;">
+          <h2 style="color: #ffffff;">{{project.title}}</h2>
+        </div>
+      </div>
+      {% elif project.status == 1 %}
+      <div class="item">
+        <img src="{% static project.image %}" class="d-block img-responsive" height="100%"  width="100%">
+        <div class="carousel-caption  d-md-block" style="top: 0%;">
+          <h2 style="color: #ffffff;">{{project.title}}</h2>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+
+  <a class="left carousel-control" data-target="#myCarousel" role="button" data-slide="prev" onclick="$('#myCarousel').carousel('prev')">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" data-target="#myCarousel" role="button" data-slide="next" onclick="$('#myCarousel').carousel('next')">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
+  </div>
+</div>
+</div>
+
+<br>
+<br><br>
+
+<header class="masthead">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class=" row-md-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1 class=" site-heading my-4 mt-3 text-black"> Projects </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="card-columns" >
+      {% for project in projects %}
+      <div class="card mb-8" >
+        <img class="card-img-top" src="{% static project.image %}"  >
+        <div class="card-body">
+          <h3 class="card-title">{{ project.title }}</h3>
+          <p class="card-text" style="font-size:1.875em">{{project.description|slice:":200"|safe}} </p>
+          <a href="{% url 'project_detail' project.pk  %}" class="btn btn-primary" style="padding: 15px 32px; font-size: 12px;">Read More</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+  <footer class="py-3 bg-grey">
+    <p class="m-0 text-dark text-center ">Copyright &copy; 2021 Marios Stavrou </p>
+  </footer>

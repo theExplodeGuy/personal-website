@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="card border-primary mb-3">
+      <div class="card-body">
+        <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
+        <h5>About the project:</h5>
+        <p>{{ project.description }}</p>
+        <br>
+        <h5>Technology used:</h5>
+        <p>{{ project.technology }}</p>
+        <h5>Find more:</h5>
+        <a href="{{ project.link }}" >{{ project.link }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

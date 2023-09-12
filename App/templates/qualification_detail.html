@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="card border-primary mb-3">
+      <div class="card-body">
+        <h1>{% block title %} {{ object.qualification }} {% endblock title %}</h1>
+        <p class=" text-muted">{{ home.author }} | {{ home.created_on }}</p>
+        <p class="card-text ">{{ object.about_qualification|safe}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

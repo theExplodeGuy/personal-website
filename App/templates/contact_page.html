@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="masthead">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h3 class=" site-heading my-4 mt-3 text-black"> Marios Stavrou</h3>
+          <h3 class="text-dark">Contact Me</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="row">
+    <!-- Blog Entries Column -->
+    <div class="col-md-8 mt-3 left">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h3 class="card-title">Email</h3>
+          <p class="card-text text-muted h3">marios.stavrou04@gmail.com </p>
+        </div>
+      </div>
+    </div>
+    {% block sidebar %}
+    {% include 'sidebar.html' %}
+    {% endblock sidebar %}
+  </div>
+</div>
+{%endblock%}
